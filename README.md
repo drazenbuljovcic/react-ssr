@@ -22,6 +22,7 @@ which will tell webpack to watch out for any changes in files in the ./src folde
 Webpack will output the files to the ./dist folder, which will run a restart of the nodemon server and refresh the browser page.
 
 ## Production
+
 To output production file bundles with optimizations run:
 
 npm run build
