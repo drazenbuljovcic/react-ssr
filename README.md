@@ -25,6 +25,6 @@ To output production file bundles with optimizations run:
 
 npm run build
 
-And run the server:
+Running the server, but beforehand building a fresh production bundle:
 
 npm start
