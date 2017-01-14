@@ -1,3 +1,6 @@
+# Express static files
+dist/
+
 # Logs
 logs
 *.log
