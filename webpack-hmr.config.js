@@ -5,15 +5,16 @@ var webpack = require('webpack'),
     autoprefixer = require('autoprefixer');
 
 var DEBUG = process.env.NODE_ENV !== 'production' ? true : false;
+var HMR = process.env.NODE_ENV === 'dev-hmr' ? true : false;
 
 var style_loaders = 'css-loader!postcss-loader!sass';
 
 const common = {
-  devtool: DEBUG ? 'source-map' : '',
-  entry: {
-    "app": './src/app/app.js',
-    "vendor": ['./src/app/vendor.js']
-  },
+  devtool: 'inline-source-map',
+  entry: [
+    'webpack-hot-middleware/client',
+    './src/app/app.js'
+  ],
   output: {
     path: path.join(path.resolve(__dirname, "dist")),
     filename: 'app.bundle.js',
@@ -24,30 +25,27 @@ const common = {
   ],
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'vendor.bundle.js',
-      minChunks: Infinity
-    }),
-    new ExtractPlugin('app.bundle.css')
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src', 'index.html')
+    })
   ],
   module: {
-    loaders: [
+    loaders: [    
       {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ["react", "es2015" ]
+          presets: ["react", "es2015", "react-hmre" ]
         }
       },
       {
         test: /\.sass$/,
-        loader: ExtractPlugin.extract('style', style_loaders)
+        loader: 'style!' + style_loaders
       }
     ]
   }
 }
-
 module.exports = common;

@@ -4,10 +4,11 @@
   "description": "React SSR app with express server and webpack bundling.",
   "main": "./server/server.js",
   "scripts": {
-    "watch": "node_modules/.bin/webpack --progress --colors --watch",
     "build": "rm -rf dist/ && NODE_ENV=production webpack -p --progress --colors",
     "start": "npm run build && babel-node server/server.js | node",
-    "start:dev": "node_modules/.bin/nodemon server/server.js --exec babel-node --ext pug,js,css"
+    "watch": "node_modules/.bin/webpack --progress --colors --watch",
+    "start:dev": "node_modules/.bin/nodemon server/server.js --exec babel-node --ext pug,js,css",
+    "start:dev-hmr": "NODE_ENV=dev-hmr node_modules/.bin/nodemon server/server.js --exec babel-node --ext pug"
   },
   "babel": {
     "presets": [
@@ -22,12 +23,12 @@
     "react-router": "^2.6.1"
   },
   "devDependencies": {
+    "autoprefixer": "^6.6.1",
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
-    "webpack": "^1.12.13",
-    "autoprefixer": "^6.6.1",
+    "babel-preset-react-hmre": "^1.1.0",
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.26.0",
@@ -37,7 +38,10 @@
     "pug": "^2.0.0-beta6",
     "reload": "^1.1.0",
     "sass-loader": "^4.1.1",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "webpack": "^1.12.13",
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.6.4"
   },
   "repository": {
     "type": "git",
