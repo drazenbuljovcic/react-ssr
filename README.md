@@ -10,9 +10,17 @@ npm i
 
 ## Development
 
+Both options include ssr.
+
+For Hot module reloading run:
+
+npm run start:dev-hmr
+
+or
+
 Start express server by running:
 
-npm start:dev
+npm run start:dev
 
 In another terminal run:
 

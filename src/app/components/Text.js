@@ -1,5 +1,5 @@
 import React from 'react';
-export default class Text extends React.Component{
+export default class Text extends React.Component {
     handleSubmit(e) {
         alert();
         console.log('button pressed');
@@ -7,7 +7,7 @@ export default class Text extends React.Component{
     render() {
         return (
             <div>
-                Hello world!
+                <h1>Home</h1>
             </div>
         )
     }

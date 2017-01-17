@@ -32,9 +32,6 @@ if(process.env.NODE_ENV === 'dev-hmr') {
   app.use(webpackHotMiddleware(compiler));
 }
 
-app.set('view engine', 'pug');
-app.set('views', path.resolve(__dirname));
-
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
 // React routing wildcard
@@ -46,18 +43,13 @@ app.get('*', (req, res) => {
     location: req.url
   }, (error, redirectLocation, renderProps) => {
     // in case of error display the error message
-    if (error) {
-      console.log('react-router error');
+    if (error) 
       return res.status(500).send(err.message);
-    } 
 
     // in case of redirect propagate the redirect to the browser
-    if (redirectLocation) {
-      console.log('react-router redirect');
+    if (redirectLocation)
       return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-    }
 
-    console.log('react-router render');
     res.send(ReactDOMServer
         .renderToString(<RouterContext {...renderProps} />)
     );
