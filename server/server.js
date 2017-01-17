@@ -32,8 +32,6 @@ if(process.env.NODE_ENV === 'dev-hmr') {
   app.use(webpackHotMiddleware(compiler));
 }
 
-
-
 app.set('view engine', 'pug');
 app.set('views', path.resolve(__dirname));
 
