@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './components/Header';
 
 export default class Page extends React.Component {
   render() {
@@ -9,6 +10,7 @@ export default class Page extends React.Component {
             <link rel='stylesheet' type="text/css" href="app.bundle.css" />
         </head>
         <body>
+          <Header />
           <div>
             { this.props.children }
           </div>

@@ -3,11 +3,15 @@ import path from 'path';
 import http from 'http';
 import express from 'express';
 import reload from 'reload';
-//React Router
+//React 
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+//React Router
 import { match, RouterContext } from 'react-router';
 import routes from '../src/app/routes';
-import ReactDOMServer from 'react-dom/server';
+//Redux
+import { Provider } from 'react-redux';
+import configStore from '../src/app/store';
 // Webpack dev server with hmr
 import webpack from 'webpack';
 import WebpackHMRConfig from '../webpack-hmr.config.js';
@@ -51,7 +55,11 @@ app.get('*', (req, res) => {
       return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
 
     res.send(ReactDOMServer
-        .renderToString(<RouterContext {...renderProps} />)
+        .renderToString(
+          <Provider store={configStore()}>
+            <RouterContext {...renderProps} />
+          </Provider>
+        )
     );
   });
 });
