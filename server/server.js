@@ -53,10 +53,9 @@ app.get('*', (req, res) => {
     if (redirectLocation) 
       return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
 
-    res.render('index', {
-       markup: ReactDOMServer.renderToString(<RouterContext {...renderProps} />)
-    })
-
+    res.send(ReactDOMServer
+        .renderToString(<RouterContext {...renderProps} />)
+    );
   });
 });
 

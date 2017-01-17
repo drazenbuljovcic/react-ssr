@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
+import Provider from 'react-redux';
+
+import configStore from './store';
 
 import routes from './routes';
-import App from './components/App';
 
 require('../styles/main.sass');
 require('./vendor.js');
@@ -13,5 +15,5 @@ ReactDOM.render((
     {routes}
   </Router>
   ),
-  document.getElementById('app')
+  document
 )

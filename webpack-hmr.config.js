@@ -27,9 +27,9 @@ const common = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.html')
-    })
+    // new HtmlWebpackPlugin({
+    //   template: path.join(__dirname, 'src', 'index.html')
+    // })
   ],
   module: {
     loaders: [    
