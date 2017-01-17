@@ -7,8 +7,8 @@ export default class Page extends React.Component {
     return (
       <html>
         <head>
-            <title>React SSR w/ Express Boilerplate</title>
-            <link rel='stylesheet' type="text/css" href="app.bundle.css" />
+          <title>React SSR w/ Express Boilerplate</title>
+          <link rel='stylesheet' type="text/css" href="app.bundle.css" />
         </head>
         <body>
           <Header />

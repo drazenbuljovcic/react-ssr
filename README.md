@@ -6,7 +6,12 @@ NodeJS (install => nodejs.org)
 
 ## Instalation
 
+Install all npm dependencies with:
+
 npm i
+
+Run npm i -g babel-cli to install babel to transpile the es6 code written in the server file.
+If you're on mac run with sudo npm i -g babel-cli.
 
 ## Development
 

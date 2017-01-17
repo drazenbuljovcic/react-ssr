@@ -3,7 +3,7 @@ import actions from '../actions/actions';
 
 export default class Content extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       text: ''
     }

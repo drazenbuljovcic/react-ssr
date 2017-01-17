@@ -49,6 +49,16 @@
     "type": "git",
     "url": "git+https://github.com/zendra1994/react-ssr.git"
   },
+  "keywords": [
+    "Server side rendering",
+    "React",
+    "React Router",
+    "Redux",
+    "Webpack",
+    "Sass",
+    "Express",
+    "NodeJS"
+  ],
   "author": "Drazen Buljovcic <drazen.buljovcic@gmail.com>",
   "license": "MIT",
   "bugs": {
