@@ -46,27 +46,23 @@ app.get('*', (req, res) => {
     location: req.url
   }, (error, redirectLocation, renderProps) => {
     // in case of error display the error message
-    if (error) 
+    if (error) {
+      console.log('react-router error');
       return res.status(500).send(err.message);
+    } 
 
     // in case of redirect propagate the redirect to the browser
-    if (redirectLocation) 
+    if (redirectLocation) {
+      console.log('react-router redirect');
       return res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+    }
 
+    console.log('react-router render');
     res.send(ReactDOMServer
         .renderToString(<RouterContext {...renderProps} />)
     );
   });
 });
-
-// If HMR is enabled upon every request, load the static index.html file
-// into which the changes can be injected
-// NOT SERVER SIDE RENDERED !
-if(process.env.NODE_ENV === 'dev-hmr') {
-  app.use('/', function (req, res) {
-      res.sendFile(path.resolve('src/index.html'));
-  });
-}
 
 server.listen(port, (error) => {
   if (error) throw error;

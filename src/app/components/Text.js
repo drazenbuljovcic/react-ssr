@@ -1,12 +1,13 @@
 import React from 'react';
 export default class Text extends React.Component{
     handleSubmit(e) {
-        e.preventDefault();
+        alert();
+        console.log('button pressed');
     }
     render() {
         return (
             <div>
-                <button onClick={this.handleSubmit.bind(this)}>Submit</button>
+                Hello world!
             </div>
         )
     }
