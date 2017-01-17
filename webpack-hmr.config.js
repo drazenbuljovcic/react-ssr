@@ -31,7 +31,7 @@ const common = {
   module: {
     loaders: [    
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {

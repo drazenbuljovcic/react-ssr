@@ -1,11 +1,11 @@
 const ACTIONS = {
-    ADD_TEXT: 'ADD_TEXT'
+    CHANGE_TEXT: 'CHANGE_TEXT'
 }
 
-export default actions = {
+export default {
     addText(text) {
         return {
-            type: ACTIONS.ADD_TEXT,
+            type: ACTIONS.CHANGE_TEXT,
             payload: text
         }
     }

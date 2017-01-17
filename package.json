@@ -8,7 +8,7 @@
     "start": "npm run build && babel-node server/server.js | node",
     "watch": "node_modules/.bin/webpack --progress --colors --watch",
     "start:dev": "node_modules/.bin/nodemon server/server.js --exec babel-node --ext js,css",
-    "start:dev-hmr": "NODE_ENV=dev-hmr node_modules/.bin/nodemon server/server.js --exec babel-node"
+    "start:dev-hmr": "node_modules/.bin/webpack --progress --colors && NODE_ENV=dev-hmr babel-node server/server.js | node"
   },
   "babel": {
     "presets": [

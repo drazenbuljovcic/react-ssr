@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Header from './components/Header';
 
 export default class Page extends React.Component {
@@ -11,7 +12,7 @@ export default class Page extends React.Component {
         </head>
         <body>
           <Header />
-          <div>
+          <div id="main">
             { this.props.children }
           </div>
           <script src="vendor.bundle.js" />

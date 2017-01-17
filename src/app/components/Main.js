@@ -1,13 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import Text from './Text';
+import Content from './Content';
 
-export default class Main extends React.Component {
+class Main extends React.Component {
     render() {
         return (
             <div>
-                <Text />
+                {this.props.text}
+                <Content dispatch={this.props.dispatch} />
             </div>
         )
     }
 }
+function mapStateToProps(state) {
+  return state;
+}
+export default connect(mapStateToProps)(Main);
