@@ -10,6 +10,7 @@ import routes from './routes';
 require('../styles/main.sass');
 require('./vendor.js');
 
+console.clear();
 ReactDOM.render((
   <Provider store={configStore()}>
     <Router history={browserHistory}>
