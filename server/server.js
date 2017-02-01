@@ -66,5 +66,5 @@ app.get('*', (req, res) => {
 
 server.listen(port, (error) => {
   if (error) throw error;
-  console.log(`Express server listening on port ${port}`);
+  console.log(`Express server listening on port ${port}!`);
 });
