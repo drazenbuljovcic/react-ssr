@@ -30,7 +30,10 @@ const common = {
       filename: 'vendor.bundle.js',
       minChunks: Infinity
     }),
-    new ExtractPlugin('app.bundle.css')
+    new ExtractPlugin('app.bundle.css'),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify({'env': process.env.NODE_ENV})
+    })
   ],
   module: {
     loaders: [

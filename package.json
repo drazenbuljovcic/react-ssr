@@ -7,7 +7,7 @@
     "build": "rm -rf dist/ && NODE_ENV=production webpack -p --progress --colors",
     "start": "npm run build && babel-node server/server.js | node",
     "test": "jest --coverage --watch",
-    "dev": "node_modules/.bin/npm-run-all --parallel start:dev watch",
+    "dev": "NODE_ENV=development node_modules/.bin/npm-run-all --parallel start:dev watch",
     "watch": "node_modules/.bin/webpack --progress --colors --watch",
     "start:dev": "node_modules/.bin/nodemon server/server.js --exec babel-node --ext js,css",
     "start:dev-hmr": "node_modules/.bin/webpack --progress --colors && NODE_ENV=dev-hmr babel-node server/server.js | node"
