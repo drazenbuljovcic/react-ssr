@@ -15,8 +15,8 @@ export default class Page extends React.Component {
           <div id="main">
             { this.props.children }
           </div>
-          <script src="vendor.bundle.js" />
-          <script src="app.bundle.js" />
+          <script src="/vendor.bundle.js" />
+          <script src="/app.bundle.js" />
           <script src="/reload/reload.js" />
         </body>
       </html>
