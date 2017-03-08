@@ -39,7 +39,7 @@ class Page extends React.Component {
         <body>
           <Header />
           <div id="main">
-            { this.props.children }
+            { React.cloneElement(this.props.children, this.props) }
           </div>
           <script src="/vendor.bundle.js" />
           <script src="/app.bundle.js" />
