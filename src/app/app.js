@@ -7,6 +7,8 @@ import configStore from './store';
 
 import routes from './routes';
 
+import '../assets/favicon.ico';
+
 require('../styles/main.sass');
 require('./vendor.js');
 

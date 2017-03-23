@@ -3,10 +3,10 @@ var webpack = require('webpack'),
     ExtractPlugin = require('extract-text-webpack-plugin'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     autoprefixer = require('autoprefixer');
-
+    
 var DEBUG = process.env.NODE_ENV !== 'production' ? true : false;
 
-var style_loaders = 'css-loader!postcss-loader!sass';
+var style_loaders = 'css-loader!postcss-loader!resolve-url-loader!sass-loader';
 
 const common = {
   devtool: DEBUG ? 'source-map' : '',
@@ -16,7 +16,7 @@ const common = {
   },
   output: {
     path: path.join(path.resolve(__dirname, "dist")),
-    filename: 'app.bundle.js',
+    filename: 'js/app.bundle.js',
     publicPath: ''
   },
   postcss: [
@@ -27,29 +27,47 @@ const common = {
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'vendor.bundle.js',
+      filename: 'js/vendor.bundle.js',
       minChunks: Infinity
     }),
     new ExtractPlugin('app.bundle.css'),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify({'env': process.env.NODE_ENV})
-    })
+    }),
   ],
   module: {
     loaders: [
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: /(node_modules|bower_components)/,
         query: {
           presets: [ "react", "es2015" ]
         }
       },
+      { 
+        test: /(\.sass|\.scss)$/, 
+        loader: ExtractPlugin.extract('style', style_loaders),
+        exclude: /(node_modules|bower_components)/,
+      },
+      { 
+        test: /\.(png|gif|jpe?g|svg)$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'url',
+        query: { limit: 1000, name: 'images/[hash].[ext]' } 
+      },
       {
-        test: /\.sass$/,
-        loader: ExtractPlugin.extract('style', style_loaders)
-      }
+        test: /favicon\.ico$/,
+        loader: 'url',
+        query: { 
+          limit: 1,
+          name: '[name].[ext]',
+        },
+      },
     ]
+  },
+  resolve: {
+    extensions: [ '', '.js', '.jsx', '.css', '.sass', '.scss', '.png', '.jpg', '.jpeg', '.svg' ]
   }
 }
 

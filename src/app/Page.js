@@ -41,8 +41,8 @@ class Page extends React.Component {
           <div id="main">
             { React.cloneElement(this.props.children, this.props) }
           </div>
-          <script src="/vendor.bundle.js" />
-          <script src="/app.bundle.js" />
+          <script src="js/vendor.bundle.js" />
+          <script src="js/app.bundle.js" />
           { this.maybeInjectReloadScriptForDevelopment() }
         </body>
       </html>
