@@ -6,60 +6,69 @@ var webpack = require('webpack'),
     
 var DEBUG = process.env.NODE_ENV !== 'production' ? true : false;
 
-var style_loaders = 'css-loader!postcss-loader!resolve-url-loader!sass-loader';
-
+var style_loaders = 'css-loader!postcss-loader!sass-loader';
+console.log(process.env.NODE_ENV);
 const common = {
   devtool: DEBUG ? 'source-map' : '',
   entry: {
     "app": './src/app/app.js',
-    "vendor": ['./src/app/vendor.js']
+    "vendor.bundle.js": ['./src/app/vendor.js']
   },
   output: {
     path: path.join(path.resolve(__dirname, "dist")),
-    filename: 'js/app.bundle.js',
+    filename: 'js/[name].bundle.js',
     publicPath: ''
   },
-  postcss: [
-    autoprefixer({})
-  ],
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'js/vendor.bundle.js',
+      filename: 'js/[name].bundle.js',
       minChunks: Infinity
     }),
     new ExtractPlugin('app.bundle.css'),
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify({'env': process.env.NODE_ENV})
+      'process.env.env': JSON.stringify(process.env.NODE_ENV)
     }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          autoprefixer(),
+        ]
+      }
+    })
   ],
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
-        exclude: /(node_modules|bower_components)/,
-        query: {
-          presets: [ "react", "es2015" ]
-        }
+        options: {
+          presets: [ 'react', 'es2015' ] 
+        },
+        exclude: /(node_modules|bower_components)/
       },
-      { 
+      {
         test: /(\.sass|\.scss)$/, 
-        loader: ExtractPlugin.extract('style', style_loaders),
+        loader: ExtractPlugin.extract({
+          'fallback': 'style-loader',
+          'use': style_loaders
+        }),
         exclude: /(node_modules|bower_components)/,
       },
       { 
         test: /\.(png|gif|jpe?g|svg)$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'url',
-        query: { limit: 1000, name: 'images/[hash].[ext]' } 
+        loaders: 'url-loader',
+        options: { 
+          limit: 1000,
+          name: 'images/[hash].[ext]'
+        },
+        exclude: /(node_modules|bower_components)/
       },
       {
         test: /favicon\.ico$/,
-        loader: 'url',
-        query: { 
+        loader: 'url-loader',
+        options: { 
           limit: 1,
           name: '[name].[ext]',
         },
@@ -67,7 +76,7 @@ const common = {
     ]
   },
   resolve: {
-    extensions: [ '', '.js', '.jsx', '.css', '.sass', '.scss', '.png', '.jpg', '.jpeg', '.svg' ]
+    extensions: [ '.js', '.jsx', '.css', '.sass', '.scss', '.png', '.jpg', '.jpeg', '.svg' ]
   }
 }
 
