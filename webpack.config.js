@@ -48,7 +48,24 @@ const common = {
       {
         test: /\.sass$/,
         loader: ExtractPlugin.extract('style', style_loaders)
-      }
+      },
+      { 
+        test: /\.(png|gif|jpe?g|svg)$/,
+        loader: 'url-loader',
+        options: { 
+          limit: 1000,
+          name: 'images/[hash].[ext]'
+        },
+        exclude: /(node_modules|bower_components)/
+      },
+      {
+        test: /favicon\.ico$/,
+        loader: 'url-loader',
+        options: { 
+          limit: 1,
+          name: '[name].[ext]',
+        },
+      },
     ]
   }
 }
